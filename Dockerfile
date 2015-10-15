@@ -1,11 +1,14 @@
-FROM ubuntu:14.04.3
+FROM ubuntu-debootstrap:14.04.3
+
 MAINTAINER Dawid Malinowski <d.malinowski@oberthur.com>
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -qq \
-  && apt-get install -y software-properties-common vim unzip wget curl \
+RUN echo 'APT::Install-Recommends "0"; \n\
+          APT::Get::Assume-Yes "true"; \n\
+          APT::Get::force-yes "true"; \n\
+          APT::Install-Suggests "0";' > /etc/apt/apt.conf \
+  && apt-get update \
+  && apt-get install vim-nox curl telnet \
   && apt-get autoremove -y \
   && apt-get clean install
