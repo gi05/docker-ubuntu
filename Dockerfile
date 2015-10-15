@@ -9,6 +9,6 @@ RUN echo 'APT::Install-Recommends "0"; \n\
           APT::Get::force-yes "true"; \n\
           APT::Install-Suggests "0";' > /etc/apt/apt.conf \
   && apt-get update \
-  && apt-get install vim-nox curl telnet \
+  && apt-get install vim-nox curl telnet software-properties-common \
   && apt-get autoremove -y \
   && apt-get clean install
