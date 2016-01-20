@@ -11,4 +11,5 @@ RUN echo 'APT::Install-Recommends "0"; \n\
   && apt-get update \
   && apt-get install vim-nox curl telnet software-properties-common dnsutils net-tools less netcat \
   && apt-get autoremove -y \
-  && apt-get clean install
+  && apt-get clean install \
+  && locale-gen en_US.UTF-8
