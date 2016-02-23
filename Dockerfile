@@ -2,7 +2,13 @@ FROM ubuntu:14.04.4
 
 MAINTAINER Dawid Malinowski <d.malinowski@oberthur.com>
 
-ENV DEBIAN_FRONTEND=noninteractive
+# Set the locale
+RUN locale-gen en_US.UTF-8  
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    LANGUAGE=en_US.en \
+    LANG=en_US.UTF-8 \
+    LC_ALL=en_US.UTF-8
 
 RUN echo 'APT::Install-Recommends "0"; \n\
           APT::Get::Assume-Yes "true"; \n\
@@ -12,5 +18,4 @@ RUN echo 'APT::Install-Recommends "0"; \n\
   && apt-get install vim-nox curl telnet software-properties-common dnsutils net-tools less netcat \
   && apt-get autoremove -y \
   && apt-get clean install \
-  && rm -rf /var/lib/apt/lists/* \
-  && locale-gen en_US.UTF-8
+  && rm -rf /var/lib/apt/lists/*
