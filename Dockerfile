@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.4
+FROM ubuntu:16.04
 
 MAINTAINER Dawid Malinowski <d.malinowski@oberthur.com>
 
