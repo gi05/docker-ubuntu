@@ -1,4 +1,4 @@
-FROM ubuntu:xenial-20160914
+FROM ubuntu:xenial-20170214
 
 MAINTAINER Dawid Malinowski <d.malinowski@oberthur.com>
 
@@ -14,6 +14,8 @@ RUN echo 'APT::Install-Recommends "0"; \n\
           APT::Get::Assume-Yes "true"; \n\
           APT::Install-Suggests "0";' > /etc/apt/apt.conf \
   && apt-get update \
+  && apt-get upgrade \
+  && apt-get dist-upgrade \
   && apt-get install vim-nox curl telnet software-properties-common dnsutils net-tools less netcat \
   && apt-get autoremove -y \
   && apt-get clean install \
