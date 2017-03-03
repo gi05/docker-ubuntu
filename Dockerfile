@@ -1,4 +1,4 @@
-FROM ubuntu:xenial-20160914
+FROM ubuntu:xenial-20170214
 
 MAINTAINER Dawid Malinowski <d.malinowski@oberthur.com>
 
