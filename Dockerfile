@@ -19,4 +19,19 @@ RUN echo 'APT::Install-Recommends "0"; \n\
   && apt-get install vim-nox curl telnet software-properties-common dnsutils net-tools less netcat \
   && apt-get autoremove -y \
   && apt-get clean install \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+
+# clean up
+  && apt-get clean autoclean \
+  && apt-get autoremove --yes \
+  && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
+  && rm -fr /tmp/* /var/tmp/*  
+
+# cleaning docs
+ONBUILD RUN rm -rf /usr/share/doc/* \
+  && rm -rf /usr/share/doc/*/copyright \
+  && rm -rf /usr/share/man/* \
+  && rm -rf /usr/share/info/* 
+
+
+
