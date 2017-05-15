@@ -1,9 +1,7 @@
-FROM ubuntu:xenial-20170214
+FROM ubuntu:xenial-20170417.1
 
 MAINTAINER Dawid Malinowski <d.malinowski@oberthur.com>
 
-# Set the locale
-RUN locale-gen en_US.UTF-8  
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANGUAGE=en_US.en \
@@ -16,10 +14,14 @@ RUN echo 'APT::Install-Recommends "0"; \n\
   && apt-get update \
   && apt-get upgrade \
   && apt-get dist-upgrade \
-  && apt-get install vim-nox curl telnet software-properties-common dnsutils net-tools less netcat \
+  && apt-get install locales \
+  && apt-get remove ruby \
   && apt-get autoremove -y \
   && apt-get clean install \
   && rm -rf /var/lib/apt/lists/* \
+
+# Set the locale
+  &&  locale-gen en_US.UTF-8 \
 
 # clean up
   && apt-get clean autoclean \
