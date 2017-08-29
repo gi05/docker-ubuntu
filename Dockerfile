@@ -1,4 +1,4 @@
-FROM ubuntu:xenial-20170417.1
+FROM ubuntu:xenial-20170802
 
 MAINTAINER Dawid Malinowski <d.malinowski@oberthur.com>
 
@@ -27,13 +27,10 @@ RUN echo 'APT::Install-Recommends "0"; \n\
   && apt-get clean autoclean \
   && apt-get autoremove --yes \
   && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
-  && rm -fr /tmp/* /var/tmp/*  
+  && rm -fr /tmp/* /var/tmp/*
 
 # cleaning docs
 ONBUILD RUN rm -rf /usr/share/doc/* \
   && rm -rf /usr/share/doc/*/copyright \
   && rm -rf /usr/share/man/* \
-  && rm -rf /usr/share/info/* 
-
-
-
+  && rm -rf /usr/share/info/*
