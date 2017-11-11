@@ -1,7 +1,4 @@
-FROM ubuntu:xenial-20170802
-
-MAINTAINER Dawid Malinowski <d.malinowski@oberthur.com>
-
+FROM ubuntu:xenial-20171006
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANGUAGE=en_US.en \
@@ -11,21 +8,20 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN echo 'APT::Install-Recommends "0"; \n\
           APT::Get::Assume-Yes "true"; \n\
           APT::Install-Suggests "0";' > /etc/apt/apt.conf \
+
   && apt-get update \
   && apt-get upgrade \
   && apt-get dist-upgrade \
   && apt-get install locales \
   && apt-get remove ruby \
-  && apt-get autoremove -y \
-  && apt-get clean install \
-  && rm -rf /var/lib/apt/lists/* \
 
-# Set the locale
-  &&  locale-gen en_US.UTF-8 \
+  # Set the locale
+  && locale-gen en_US.UTF-8 \
 
-# clean up
+  # clean up
   && apt-get clean autoclean \
   && apt-get autoremove --yes \
+  && apt-get clean install \
   && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
   && rm -fr /tmp/* /var/tmp/*
 
